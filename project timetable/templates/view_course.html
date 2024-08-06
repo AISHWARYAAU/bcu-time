@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="courses">
+    <h2>Department of {{ course.department }}</h2>
+    <h3>{{ course.course_name }} {{ course.semester }} semester</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Subject ID</th>
+                <th>Subject Name</th>
+                <th>Teacher ID</th>
+                <th>Teacher Name</th>
+                <th>Subject Type</th>
+                <th>Working Hours (Weekly)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in subjects %}
+            <tr>
+                <td>{{ subject.course_id }}</td>
+                <td>{{ subject.subject_id }}</td>
+                <td>{{ subject.subject_name }}</td>
+                <td>{{ subject.teacher_id }}</td>
+                <td>{{ subject.teacher_name }}</td>
+                <td>{{ subject.subject_type }}</td>
+                <td>{{ subject.working_hours }}</td>
+                <td>
+                    <a href="{{ url_for('edit_course_subject', subject_id=subject.subject_id) }}" class="edit-button">Edit</a>
+                    <form action="{{ url_for('delete_course_subject', subject_id=subject.subject_id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="edit-delete-links">      
+        <a href="{{ url_for('add_course_details', course_id=course.course_id) }}" class="edit-button">Add</a>
+    </div>
+</section>
+{% endblock %}

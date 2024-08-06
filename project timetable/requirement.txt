@@ -1,0 +1,13 @@
+# General Libraries
+numpy==1.24.2          # For numerical computations
+pandas==2.0.3          # For data manipulation and analysis
+
+# Genetic Algorithm Libraries
+deap==1.3.2            # Distributed Evolutionary Algorithms in Python
+
+# Streamlit for Web Interface
+streamlit==1.22.0      # For creating the web app
+
+# Optional but useful
+matplotlib==3.7.1      # For visualizing results
+scipy==1.10.1          # For scientific computations

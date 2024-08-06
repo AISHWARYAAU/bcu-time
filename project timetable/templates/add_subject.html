@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Add Subject{% endblock %}
+
+{% block content %}
+<h2>Add Subject</h2>
+
+<!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="flash-messages">
+    {% for category, message in messages %}
+    <div class="flash-message flash-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<form action="/add_subject" method="post">
+    <label for="subjectid">Subject ID:</label>
+    <input type="text" id="subjectid" name="subjectid" required><br><br>
+
+
+    <label for="subject_name">Subject Name:</label>
+    <input type="text" id="subject_name" name="subject_name" required><br><br>
+
+
+    <label for="subject_type">Subject Type:</label>
+    <select id="subject_type" name="subject_type" required>
+        <option value="theory">Theory</option>
+        <option value="theory, lab">Theory, Lab</option>
+    </select>
+<br><br> <br>
+    <button type="submit">Add Subject</button>
+</form>
+
+
+
+{% endblock %}

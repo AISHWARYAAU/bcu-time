@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Scheduler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="stripes-container">
+        <div class="stripe stripe1"></div>
+        <div class="stripe stripe2"></div>
+        <div class="stripe stripe3"></div>
+        <div class="stripe stripe4"></div>
+    </div>
+    <div class="text-container">
+        <div class="text">
+            <span class="class">Class</span><br>
+            <span class="scheduler">Scheduler</span>
+        </div>
+        <div class="button-container">
+            <button id="startButton">Click to Start</button>
+        </div>
+    </div> 
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="generated">
+    <h1>Generated Timetable</h1>
+    <style>
+        .timetable, .timetable th, .timetable td {
+            border: 2px solid black; /* Thick and black border */
+            border-collapse: collapse; /* Ensures borders are merged */
+            padding: 8px; /* Adds some padding inside the cells */
+        }
+        .timetable th, .timetable td {
+            text-align: center; /* Centers text inside cells */
+        }
+    </style>
+    
+    {% for course_id, timetable in timetables.items() %}
+        <h2>Course ID: {{ course_id }}</h2>
+        <table class="timetable">
+            <thead>
+                <tr>
+                    <th>Day/Time</th>
+                    {% for time_slot in TIME_SLOTS %}
+                        <th>{{ time_slot }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for day in DAYS %}
+                    <tr>
+                        <td>{{ day }}</td>
+                        {% for time_slot in TIME_SLOTS %}
+                            {% set current_entry = timetable.get((day, time_slot)) %}
+                            {% if current_entry %}
+                                {% if current_entry.colspan == 2 %}
+                                    <td colspan="2">{{ current_entry.subject_name }} (Lab) ({{ current_entry.teacher_id }})</td>
+                                {% elif current_entry.colspan == 0 %}
+                                    {# Skip the cell rendering because it is covered by the previous cell's colspan #}
+                                {% else %}
+                                    <td>{{ current_entry.subject_name }} ({{ current_entry.teacher_id }})</td>
+                                {% endif %}
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+</section>
+<button onclick="shuffleTimetable()">ReGenerate</button>
+    <script>
+        function shuffleTimetable() {
+            fetch('/shuffle')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('Failed to shuffle timetable');
+                    }
+                });
+        }
+    </script>
+{% endblock %}

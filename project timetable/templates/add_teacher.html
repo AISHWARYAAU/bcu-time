@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="add-teacher">
+    <h2>Add Teacher</h2>
+    <form action="{{ url_for('add_teacher') }}" method="POST">
+        <label for="id">Teacher ID:</label>
+        <input type="text" id="id" name="id" required>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="working_hours">Working Hours (Weekly):</label>
+        <input type="number" id="working_hours" name="working_hours" required>
+        
+        <button type="submit">Add Teacher</button>
+    </form>
+</section>
+{% endblock %}

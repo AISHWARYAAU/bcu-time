@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="semester-details">
+    <h2>{{ course_name }} - {{ semester }}</h2>
+    <p>Department: {{ course.department }}</p>
+    <p>Course: {{ course_name }}</p>
+    <p>Semester: {{ semester }}</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Teacher</th>
+                <th>Subject Type</th>
+                <th>Working Hours (Weekly)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in semester_data %}
+            <tr>
+                <td>{{ subject.subject }}</td>
+                <td>{{ subject.teacher }}</td>
+                <td>{{ subject.subject_type }}</td>
+                <td>{{ subject.working_hours }}</td>
+                <td>
+                    <a href="{{ url_for('edit_subject', course_name=course_name, semester=semester, subject=subject.subject) }}" class="edit-button">Edit</a>
+                    <a href="{{ url_for('delete_subject', course_name=course_name, semester=semester, subject=subject.subject) }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('view_course', course_name=course_name) }}">Back to Semesters</a>
+</section>
+{% endblock %}

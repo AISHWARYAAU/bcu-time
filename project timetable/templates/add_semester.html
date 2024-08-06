@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Add Semester{% endblock %}
+
+{% block content %}
+    <h1>Add Semester</h1>
+    <form method="post" action="{{ url_for('add_semester') }}">
+        <label for="semester_id"> ID:</label>
+        <input type="text" id="semester_id" name="semester_id" required>
+
+        <label for="semester_name">Name:</label>
+        <input type="text" id="semester_name" name="semester_name" required>
+
+        <button type="submit">Add Semester</button>
+    </form>
+{% endblock %}

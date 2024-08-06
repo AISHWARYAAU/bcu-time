@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(to bottom, rgb(139, 139, 232), white);
+    }
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color: #333333;
+    color: white;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    z-index: 2; /* Ensure sidebar is above content */
+}
+.stripes-container {
+    position: absolute;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.stripe {
+    width:25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: slideIn 2s ease-in-out forwards;
+    animation-delay: 0s;
+}
+
+.stripe1 {
+    background-color: #004D40;
+}
+
+.stripe2 {
+    background-color: #81C784;
+}
+
+.stripe3 {
+    background-color: #FFF176;
+}
+
+.stripe4 {
+    background-color: #FFB74D;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.label {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2em;
+    color: #E55C1C;
+}
+
+.text-container {
+    position: absolute;
+    right: 10%;
+    text-align: center;
+    color: #FCE4EC;
+
+}
+
+.text {
+    font-size: 3em;
+}
+
+.button-container {
+    position: absolute;
+    bottom: -40%; /* Adjusted margin-top */
+    left: 50%;
+    transform: translateX(-70%);
+    width: 100%; /* Ensure button takes full width */
+    text-align: center;
+}
+
+button {
+    background-color: #d8a67d;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.class,.scheduler{
+    display:block;
+    font-weight:bold;
+    font-size:100px;
+    margin-right:200pt;
+}
+
+
+.sidebar h2 {
+    color: #f1f1f1;
+    font-size: 1.5em; /* Adjusted font size */
+}
+
+.sidebar a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    font-size: 1em; /* Adjusted font size */
+}
+
+.sidebar a:hover {
+    background-color: #575757;
+}
+
+/* Main content styles */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    position: relative; /* Ensure proper stacking */
+    z-index: 0; /* Ensure main content is behind sidebar */
+}
+
+.dashboard-welcome {
+    text-align: center;
+    font-size: 1.5em; /* Adjusted font size */
+}
+
+/* Teachers table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1.1em; /* Adjusted font size */
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    color:white;
+
+}
+/* Target all td elements */
+td {
+    color: black; /* Set text color to black */
+}
+
+th {
+    background-color: #0b2167;
+}
+
+.add-button, .edit-button, .delete-button {
+    padding: 10px 15px;
+    margin: 5px;
+    color: white;
+    background-color: #4CAF50;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative; /* Ensure proper stacking */
+    z-index: 2; /* Ensure buttons are above table */
+}
+
+.edit-button {
+    background-color: #95a09d;
+    font-weight: bold;
+}
+
+.delete-button {
+    background-color: #95a09d;
+    font-weight: bold;
+}
+
+.add-button {
+    background-color: #4CAF50;
+}
+
+.add-button:hover, .edit-button:hover, .delete-button:hover {
+    opacity: 0.8;
+}
+
+
+#teachers {
+    padding: 20px;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+#departments {
+    padding: 20px;
+    max-height: calc(100vh - 40px); /* Adjust to account for padding/margins */
+    overflow-y: auto;
+}
+#courses {
+    padding: 20px;
+    max-height: calc(100vh - 40px); /* Adjust to account for padding/margins */
+    overflow-y: auto;
+}
+#subjects {
+    padding: 20px;
+    max-height: calc(100vh - 40px); /* Adjust to account for padding/margins */
+    overflow-y: auto;
+}
+
+#generated{
+    padding: 20px;
+    max-height: calc(100vh - 40px); /* Adjust to account for padding/margins */
+    overflow-y: auto;
+}
+

@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Timetable{% endblock %}
+
+{% block content %}
+    <style>
+        /* Styling for the options */
+        .options-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .option {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .option:hover {
+            background-color: #e0e0e0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        button {
+            margin-top: 20px;
+        }
+    </style>
+
+    <!-- Placeholder content initially displayed -->
+    <div id="placeholder-content" class="options-container">
+        <div class="option" onclick="showViewCourseTimetable()">View Course Timetable</div>
+        <div class="option" onclick="showViewTeachersTimetable()">View Teachers Timetable</div>
+        <div class="option" onclick="showGenerateTimetable()">Generate Timetable</div>
+    </div>
+
+    <!-- Actual content hidden by default -->
+    <div id="view-course-timetable" style="display: none;">
+        <h1>View Course Timetable</h1><br>
+        <!-- Add your view course timetable content here -->
+    </div><br>
+
+    <div id="view-teachers-timetable" style="display: none;">
+        <h1>View Teachers Timetable</h1>
+        <!-- Add your view teachers timetable content here -->
+    </div>
+
+    <div id="generate-timetable" style="display: none;">
+        <h1>Select Courses for Timetable</h1>
+        <form id="generate-form" action="/generate_timetable" method="post">
+            <div>
+                <label for="classroom-availability">Number of Classrooms Available:</label>
+                <input type="number" id="classroom-availability" name="classroom_availability" min="0" required><br>
+            </div><br>
+            <div>
+                <label for="lab-availability">Number of Labs Available:</label>
+                <input type="number" id="lab-availability" name="lab_availability" min="0" required>
+            </div><br>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th>Course Name</th>
+                        <th>Semester</th>
+                        <th>Course ID</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <td>{{ course.department }}</td>
+                        <td>{{ course.course_name }}</td>
+                        <td>{{ course.semester }}</td>
+                        <td>{{ course.course_id }}</td>
+                        <td><input type="checkbox" name="selected_courses" value="{{ course.course_id }}"></td>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit">Generate Timetable</button>
+        </form>
+        
+    </div>
+
+    <!-- JavaScript to toggle visibility -->
+    <script>
+        function showViewCourseTimetable() {
+            document.getElementById('placeholder-content').style.display = 'none';
+            document.getElementById('view-course-timetable').style.display = 'block';
+            document.getElementById('view-teachers-timetable').style.display = 'none';
+            document.getElementById('generate-timetable').style.display = 'none';
+        }
+
+        function showViewTeachersTimetable() {
+            document.getElementById('placeholder-content').style.display = 'none';
+            document.getElementById('view-course-timetable').style.display = 'none';
+            document.getElementById('view-teachers-timetable').style.display = 'block';
+            document.getElementById('generate-timetable').style.display = 'none';
+        }
+
+        function showGenerateTimetable() {
+            document.getElementById('placeholder-content').style.display = 'none';
+            document.getElementById('view-course-timetable').style.display = 'none';
+            document.getElementById('view-teachers-timetable').style.display = 'none';
+            document.getElementById('generate-timetable').style.display = 'block';
+        }
+    </script>
+{% endblock %}

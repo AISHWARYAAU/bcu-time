@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Semester{% endblock %}
+
+{% block content %}
+    <h1>Edit Semester</h1>
+    <form method="post" action="{{ url_for('edit_semester', semester_id=semester.id) }}">
+        <label for="semester_id">Semester ID:</label>
+        <input type="text" id="semester_id" name="semester_id" value="{{ semester.id }}" readonly>
+
+        <label for="semester_name">Semester Name:</label>
+        <input type="text" id="semester_name" name="semester_name" value="{{ semester.name }}" required>
+
+        <button type="submit">Update Semester</button>
+    </form>
+{% endblock %}

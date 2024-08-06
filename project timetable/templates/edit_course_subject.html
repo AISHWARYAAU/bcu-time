@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="edit_course_subject">
+    <h2>Edit Course Subject</h2>
+    <form action="{{ url_for('edit_course_subject', subject_id=subject.subject_id) }}" method="post" id="editSubjectForm">
+        <label for="course_id">Course ID:</label>
+        <input type="text" id="course_id" name="course_id" value="{{ subject.course_id }}" readonly><br><br>
+
+        <label for="subject_id">Subject ID:</label>
+        <input type="text" id="subject_id" name="subject_id" value="{{ subject.subject_id }}" readonly><br><br>
+
+        <label for="subject_name">Subject Name:</label>
+        <input type="text" id="subject_name" name="subject_name" value="{{ subject.subject_name }}" required><br><br>
+
+        <label for="teacher_id">Teacher ID:</label>
+        <input type="text" id="teacher_id" name="teacher_id" value="{{ subject.teacher_id }}" required><br><br>
+
+        <label for="teacher_name">Teacher Name:</label>
+        <input type="text" id="teacher_name" name="teacher_name" value="{{ subject.teacher_name }}" required><br><br>
+
+        <label for="subject_type">Subject Type:</label>
+        <input type="text" id="subject_type" name="subject_type" value="{{ subject.subject_type }}" required><br><br>
+
+        <label for="working_hours">Working Hours (Weekly):</label>
+        <input type="text" id="working_hours" name="working_hours" value="{{ subject.working_hours }}" required><br><br>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</section>
+{% endblock %}
